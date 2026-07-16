@@ -22,7 +22,7 @@ export const Column: React.FC<ColumnProps> = ({ text, id }: ColumnProps) => {
             { tasks.map((task) => (
                 <Card text={task.text} id={task.id} />
             )) }
-            <AddNewItem toggleButtonText="+ Add another card" 
+            <AddNewItem toggleButtonText="+ Add more responsibilities" 
             onAdd={console.log}
                 dark/>
         </ColumnContainer>
