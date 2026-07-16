@@ -25,7 +25,7 @@ const appData: AppState = {
     {
       id: "0",
       text: "To Do",
-      tasks: [{ id: "c0", text: "Generate app scaffold" }],
+      tasks: [{ id: "c0", text: "Prepare for Datastructures quiz" }, { id: "c1", text: "Prepare for DE quiz"}],
     },
     {
       id: "1",

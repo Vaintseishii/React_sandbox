@@ -3,18 +3,19 @@ import { AppContainer } from "./styles";
 import { Column } from "./components/Column";
 import { AddNewItem } from "./components/AddNewItem";
 import { useState } from "react";
+import { useAppState } from "./state/AppStateContext";
 
 const App = () => {
-  const [columnTexts, setColumnTexts] = useState<string[]>([]);
+  const { lists } = useAppState();
   return (
     <AppContainer>
-      {columnTexts.map((text) => (
-        <Column text={text} tasks={[]} />
-      ))}
-      <AddNewItem
-        onAdd={(text) => {
-          setColumnTexts((prevTexts) => [...prevTexts, text]);
-        }}
+      {
+        lists.map((list) => (
+          <Column id={list.id} text={list.text} />
+        ))
+      }
+      <AddNewItem 
+        onAdd={console.log}
         toggleButtonText="+ Add another list"
       />
     </AppContainer>

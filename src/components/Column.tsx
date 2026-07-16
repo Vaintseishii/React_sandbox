@@ -3,26 +3,27 @@ import { Card } from "./Card";
 import React from "react";
 import { AddNewItem } from "./AddNewItem";
 import { useState } from "react";
+import { useAppState } from "../state/AppStateContext";
 
 type ColumnProps = {
     text?: string;
-    tasks: string[];
-    children?: React.ReactNode;
+    id: string;
 }
 
 
-export const Column: React.FC<ColumnProps> = ({ text, tasks }: ColumnProps) => {
-    const [columnTasks, setColumnTasks] = useState<string[]>(tasks);
+export const Column: React.FC<ColumnProps> = ({ text, id }: ColumnProps) => {
+    const { getTasksByListId } = useAppState();
+
+    const tasks = getTasksByListId(id);
     
     return (
         <ColumnContainer>
             <ColumnTitle>{text ? text : "Unnamed Column"}</ColumnTitle>
-            { columnTasks.map((task) => (
-                <Card text={task} />
+            { tasks.map((task) => (
+                <Card text={task.text} id={task.id} />
             )) }
             <AddNewItem toggleButtonText="+ Add another card" 
-            onAdd={(text) => setColumnTasks(
-                (prevTasks) => [...prevTasks, text])} 
+            onAdd={console.log}
                 dark/>
         </ColumnContainer>
     )
